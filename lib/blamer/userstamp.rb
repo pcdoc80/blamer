@@ -8,14 +8,14 @@ module Blamer
       class_attribute :updated_userstamp_column, :instance_writer => false
 
       self.record_userstamps = true
-      self.created_userstamp_column = :created_by
-      self.updated_userstamp_column = :updated_by
+      self.created_userstamp_column = :creator_id
+      self.updated_userstamp_column = :updater_id
     end
 
     private
 
     def userstamp_object
-      User.current_user
+      GradingDatabase::GradingLogin.current_user
     end
 
     def _create_record(*args)
